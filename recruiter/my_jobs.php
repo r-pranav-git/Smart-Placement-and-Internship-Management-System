@@ -23,15 +23,8 @@ $result = mysqli_stmt_get_result($stmt);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/premium.css">
+    <link rel="stylesheet" href="recruiter_ui.css">
     <style>
-        body { background-color: var(--background); color: var(--text-main); font-family: 'Inter', sans-serif; }
-        .sidebar { height: 100vh; background: var(--surface); border-right: 1px solid var(--border); padding-top: 20px; position: fixed; width: 260px; }
-        .sidebar .brand { padding: 0 24px 24px; font-size: 20px; font-weight: 800; color: var(--secondary); border-bottom: 1px solid var(--border); margin-bottom: 20px; }
-        .sidebar .brand span { color: var(--primary); }
-        .nav-link { color: var(--text-light); padding: 12px 24px; font-weight: 500; margin: 4px 16px; border-radius: var(--radius-md); transition: 0.2s; }
-        .nav-link:hover { color: var(--primary); background: #f1f5f9; }
-        .nav-link.active { color: var(--primary); background: #eff6ff; font-weight: 600; }
-        .main-content { margin-left: 260px; padding: 40px; }
         .job-card { margin-bottom: 20px; padding: 25px; display: flex; justify-content: space-between; align-items: center; }
         .job-info h5 { margin-bottom: 5px; font-weight: 700; color: var(--secondary); }
         .job-meta { font-size: 13px; color: var(--text-light); display: flex; gap: 15px; }
@@ -41,23 +34,27 @@ $result = mysqli_stmt_get_result($stmt);
 <body>
 
 <div class="sidebar">
-    <div class="brand">
-        <i class="fa-solid fa-graduation-cap"></i> Excellence <span>Portal</span>
+    <div class="sidebar-brand">
+        <h2>Excellence <span>Portal</span></h2>
+        <p>Hiring Partner Panel</p>
     </div>
-    <ul class="nav flex-column">
-        <li class="nav-item"><a class="nav-link" href="../recruiter_dashboard.php"><i class="fa-solid fa-chart-pie me-2"></i> Dashboard</a></li>
-        <li class="nav-item"><a class="nav-link" href="post_job.php"><i class="fa-solid fa-briefcase me-2"></i> Post Job</a></li>
-        <li class="nav-item"><a class="nav-link active" href="my_jobs.php"><i class="fa-solid fa-list-check me-2"></i> My Jobs</a></li>
-        <li class="nav-item"><a class="nav-link" href="view_applications.php"><i class="fa-solid fa-users me-2"></i> Applications</a></li>
-        <li class="nav-item mt-4"><a class="nav-link text-danger" href="../logout.php"><i class="fa-solid fa-sign-out-alt me-2"></i> Logout</a></li>
-    </ul>
+    <div class="sidebar-nav">
+        <a href="../recruiter_dashboard.php"><i class="fa-solid fa-house"></i> <span>Dashboard</span></a>
+        <a href="post_job.php"><i class="fa-solid fa-file-circle-plus"></i> <span>Post Opportunity</span></a>
+        <a href="my_jobs.php" class="active"><i class="fa-solid fa-list-check"></i> <span>Manage Postings</span></a>
+        <a href="view_applications.php"><i class="fa-solid fa-users-viewfinder"></i> <span>Review Applicants</span></a>
+        <a href="send_message.php"><i class="fa-solid fa-envelope-open-text"></i> <span>Send Notifications</span></a>
+    </div>
+    <div class="sidebar-footer">
+        <a href="../auth/logout.php"><i class="fa-solid fa-power-off"></i> <span>Sign Out</span></a>
+    </div>
 </div>
 
 <div class="main-content">
     <div class="d-flex justify-content-between align-items-center mb-4 animate-up">
         <div>
-            <h2 class="fw-800">My Job Posts</h2>
-            <p class="text-muted">Manage your active recruitment drives.</p>
+            <h2 class="page-title mb-0">My Job Posts</h2>
+            <p class="page-subtitle">Manage your active recruitment drives.</p>
         </div>
         <a href="post_job.php" class="btn-premium"><i class="fa-solid fa-plus me-2"></i> Post New Job</a>
     </div>

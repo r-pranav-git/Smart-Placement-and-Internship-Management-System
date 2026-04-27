@@ -48,203 +48,37 @@ $profile_readiness = round(($complete_fields / $total_fields) * 100);
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<style>
-:root {
-    --primary: #2563eb;
-    --primary-dark: #1d4ed8;
-    --secondary: #0f172a;
-    --surface: #ffffff;
-    --background: #f8fafc;
-    --text-main: #1e293b;
-    --text-light: #64748b;
-    --border: #e2e8f0;
-    --radius-md: 12px;
-    --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
-}
-
-body{
-    background: var(--background);
-    font-family: 'Inter', sans-serif;
-    color: var(--text-main);
-    -webkit-font-smoothing: antialiased;
-}
-
-/* Navbar */
-.navbar{
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border);
-    padding: 15px 0;
-}
-
-.navbar-brand{
-    font-weight: 800;
-    color: var(--secondary) !important;
-    font-size: 20px;
-}
-.navbar-brand span {
-    color: var(--primary);
-}
-
-.nav-link{
-    color: var(--text-main) !important;
-    font-weight: 500;
-    font-size: 15px;
-    margin-right: 15px;
-    transition: 0.2s ease;
-}
-
-.nav-link:hover{
-    color: var(--primary) !important;
-}
-
-.nav-link.text-danger {
-    color: #ef4444 !important;
-    font-weight: 600;
-}
-.nav-link.text-danger:hover {
-    color: #dc2626 !important;
-}
-
-/* Cards */
-.dashboard-card{
-    background: var(--surface);
-    border-radius: var(--radius-md);
-    padding: 30px;
-    box-shadow: var(--shadow-md);
-    border: 1px solid var(--border);
-    margin-bottom: 30px;
-    position: relative;
-    overflow: hidden;
-}
-
-.dashboard-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: var(--primary);
-}
-
-.card-title {
-    color: var(--secondary);
-    font-weight: 700;
-    font-size: 20px;
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.card-title i {
-    color: var(--primary);
-}
-
-.info-label {
-    font-size: 13px;
-    color: var(--text-light);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 4px;
-}
-.info-value {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--text-main);
-    margin-bottom: 20px;
-}
-
-/* Tables */
-.table {
-    margin-bottom: 0;
-}
-.table th{
-    background: #f1f5f9;
-    color: var(--text-light);
-    font-weight: 600;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border-bottom: none;
-    padding: 15px;
-}
-.table td {
-    padding: 16px 15px;
-    vertical-align: middle;
-    color: var(--text-main);
-    font-size: 15px;
-    border-bottom: 1px solid var(--border);
-}
-
-.btn-primary {
-    background: var(--primary);
-    border: none;
-    font-weight: 600;
-    padding: 8px 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-}
-.btn-primary:hover {
-    background: var(--primary-dark);
-    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
-}
-
-.btn-success {
-    background: #10b981;
-    border: none;
-    font-weight: 600;
-    padding: 6px 16px;
-    border-radius: 8px;
-}
-.btn-success:hover {
-    background: #059669;
-}
-
-.status-badge {
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 600;
-    background: #f1f5f9;
-    color: var(--text-light);
-}
-.status-badge.applied { background: #dbeafe; color: #2563eb; }
-.status-badge.shortlisted { background: #dcfce7; color: #16a34a; }
-.status-badge.rejected { background: #fee2e2; color: #ef4444; }
-
-</style>
+<link rel="stylesheet" href="assets/css/premium.css">
+<link rel="stylesheet" href="student/student_ui.css">
 
 </head>
 
 <body>
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg sticky-top">
+<?php $student_active = basename($_SERVER['PHP_SELF']); ?>
+<nav class="navbar navbar-expand-lg sticky-top navbar-premium">
 <div class="container">
 <a class="navbar-brand" href="#"><i class="fa-solid fa-graduation-cap"></i> Student <span>Panel</span></a>
 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
 <span class="navbar-toggler-icon"></span>
 </button>
 <div class="collapse navbar-collapse" id="navbarNav">
-<ul class="navbar-nav ms-auto">
+<ul class="navbar-nav ms-auto gap-2">
 <li class="nav-item">
-<a class="nav-link" href="student_dashboard.php"><i class="fa-solid fa-house"></i> Dashboard</a>
+<a class="nav-link <?php echo $student_active === 'student_dashboard.php' ? 'active' : ''; ?>" href="student_dashboard.php"><i class="fa-solid fa-house me-1"></i> Dashboard</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="student/edit_profile.php"><i class="fa-solid fa-user-pen"></i> Profile</a>
+<a class="nav-link" href="student/edit_profile.php"><i class="fa-solid fa-user-pen me-1"></i> Profile</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="student/my_applications.php"><i class="fa-solid fa-paper-plane"></i> Applications</a>
+<a class="nav-link" href="student/my_applications.php"><i class="fa-solid fa-paper-plane me-1"></i> Applications</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="student/interview_schedule.php"><i class="fa-solid fa-calendar"></i> Interviews</a>
+<a class="nav-link" href="student/interview_schedule.php"><i class="fa-solid fa-calendar me-1"></i> Interviews</a>
 </li>
 <li class="nav-item">
-<a class="nav-link text-danger" href="auth/logout.php"><i class="fa-solid fa-power-off"></i> Logout</a>
+<a class="btn btn-outline-danger btn-sm rounded-pill px-4" href="auth/logout.php"><i class="fa-solid fa-power-off me-1"></i> Logout</a>
 </li>
 </ul>
 </div>
@@ -252,7 +86,7 @@ body{
 </nav>
 
 
-<div class="container mt-5">
+<div class="container student-shell">
     <div class="row">
         <!-- NOTIFICATIONS -->
         <div class="col-12 mb-4 animate-up">

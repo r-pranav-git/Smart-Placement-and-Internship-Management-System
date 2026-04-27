@@ -1,0 +1,91 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f8fafc;
+    color: #1e293b;
+}
+
+.student-shell {
+    padding-top: 26px;
+    padding-bottom: 40px;
+}
+
+.dashboard-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+    border: 1px solid #e2e8f0;
+    margin-bottom: 24px;
+}
+
+.card-title {
+    color: #0f172a;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.info-label {
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.info-value {
+    font-size: 15px;
+    font-weight: 500;
+    color: #1e293b;
+    margin-bottom: 18px;
+}
+
+.table th {
+    background: #f1f5f9;
+    color: #64748b;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: none;
+    padding: 14px;
+}
+
+.table td {
+    padding: 15px 14px;
+    vertical-align: middle;
+    color: #1e293b;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+.status-badge.applied { background: #dbeafe; color: #2563eb; }
+.status-badge.shortlisted { background: #dcfce7; color: #16a34a; }
+.status-badge.selected { background: #dcfce7; color: #15803d; }
+.status-badge.rejected { background: #fee2e2; color: #ef4444; }
+
+.form-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.form-control, .form-select {
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    padding: 10px 12px;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}

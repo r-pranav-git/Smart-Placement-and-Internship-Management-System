@@ -34,16 +34,20 @@ if(isset($_POST['upload']))
 
 <?php include("../includes/admin_navbar.php"); ?>
 
-<div class="container mt-4">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
+<div class="dashboard-header">
+    <div class="dashboard-title">
+        <h2>Upload Resources</h2>
+        <p>Share preparation materials and guides with students.</p>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+        <div class="col-md-7 col-lg-6">
             <div class="dashboard-card glass-card animate-up">
                 <div class="text-center mb-4">
                     <div class="action-icon bg-blue-100 text-primary mx-auto mb-3" style="width: 60px; height: 60px; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
                         <i class="fa-solid fa-cloud-arrow-up"></i>
                     </div>
-                    <h2 class="fw-800 mb-1" style="font-size: 24px;">Upload Resources</h2>
-                    <p class="text-muted small">Share preparation materials and guides with students.</p>
                 </div>
 
                 <?php if(isset($success)) echo "<div class='alert alert-success small animate-up'>$success</div>"; ?>
@@ -62,7 +66,6 @@ if(isset($_POST['upload']))
                 </form>
             </div>
         </div>
-    </div>
 </div>
 
 <?php include("../includes/admin_footer.php"); ?>

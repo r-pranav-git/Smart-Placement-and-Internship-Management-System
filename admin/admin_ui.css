@@ -1,0 +1,71 @@
+:root {
+    --primary: #2563eb;
+    --secondary: #0f172a;
+    --surface: #ffffff;
+    --background: #f8fafc;
+    --text-main: #1e293b;
+    --text-light: #64748b;
+    --border: #e2e8f0;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --shadow-md: 0 10px 25px -5px rgba(52, 14, 14, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--background);
+    color: var(--text-main);
+}
+
+.admin-shell {
+    padding-top: 26px;
+    padding-bottom: 40px;
+}
+
+.dashboard-header {
+    margin-bottom: 24px;
+}
+
+.dashboard-title h2 {
+    font-weight: 800;
+    color: var(--secondary);
+    margin-bottom: 6px;
+}
+
+.dashboard-title p {
+    margin: 0;
+    color: var(--text-light);
+}
+
+.dashboard-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: 24px;
+    overflow: hidden;
+}
+
+.dashboard-card table {
+    margin-bottom: 0;
+}
+
+.dashboard-card .table th {
+    background: #f1f5f9;
+    color: var(--text-light);
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    border-bottom: none;
+    padding: 14px;
+}
+
+.dashboard-card .table td {
+    padding: 14px;
+    vertical-align: middle;
+}
+
+.dashboard-card .table tr:last-child td {
+    border-bottom: none;
+}

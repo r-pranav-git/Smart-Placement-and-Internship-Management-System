@@ -9,16 +9,25 @@ JOIN users ON jobs.recruiter_id=users.id";
 $result=mysqli_query($conn,$sql);
 ?>
 
-<h2 class="page-title">Placement Drives</h2>
+<div class="dashboard-header">
+    <div class="dashboard-title">
+        <h2>Placement Drives</h2>
+        <p>Review and manage all published opportunities.</p>
+    </div>
+</div>
 
-<table class="table table-bordered bg-white">
+<div class="dashboard-card">
+<table class="table align-middle">
 
-<tr>
-<th>Job Title</th>
-<th>Company</th>
-<th>Deadline</th>
-<th>Action</th>
-</tr>
+<thead>
+    <tr>
+        <th>Job Title</th>
+        <th>Company</th>
+        <th>Deadline</th>
+        <th>Action</th>
+    </tr>
+</thead>
+<tbody>
 
 <?php
 while($row=mysqli_fetch_assoc($result))
@@ -44,6 +53,8 @@ Delete
 
 <?php } ?>
 
+</tbody>
 </table>
+</div>
 
 <?php include("../includes/admin_footer.php"); ?>

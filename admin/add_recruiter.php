@@ -25,7 +25,12 @@ if(isset($_POST['add']))
 }
 ?>
 
-<?php include("../includes/admin_navbar.php"); ?>
+<div class="dashboard-header">
+    <div class="dashboard-title">
+        <h2>Add New Recruiter</h2>
+        <p>Onboard a new hiring partner manually.</p>
+    </div>
+</div>
 
 <div class="row justify-content-center">
     <div class="col-md-6">
@@ -34,8 +39,6 @@ if(isset($_POST['add']))
                 <div class="action-icon bg-blue-100 text-primary mx-auto mb-3" style="width: 60px; height: 60px; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
                     <i class="fa-solid fa-user-plus"></i>
                 </div>
-                <h3 class="fw-800 mb-1">Add New Recruiter</h3>
-                <p class="text-muted small">Onboard a new hiring partner manually.</p>
             </div>
 
             <?php if(isset($msg)){ ?>

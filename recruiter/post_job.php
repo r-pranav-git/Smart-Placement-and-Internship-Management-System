@@ -44,76 +44,10 @@ if(isset($_POST['post']))
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/premium.css">
+    <link rel="stylesheet" href="recruiter_ui.css">
     <style>
-        :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #0f172a;
-            --background: #f8fafc;
-            --surface: #ffffff;
-            --text-main: #1e293b;
-            --text-light: #64748b;
-            --border: #e2e8f0;
-            --radius-md: 12px;
-            --radius-lg: 16px;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--background);
-            color: var(--text-main);
-        }
-
-        /* SIDEBAR (matching recruiter_dashboard.php) */
-        .sidebar {
-            height: 100vh;
-            background: var(--surface);
-            border-right: 1px solid var(--border);
-            padding-top: 20px;
-            position: fixed;
-            width: 260px;
-        }
-
-        .sidebar .brand {
-            padding: 0 24px 24px;
-            font-size: 20px;
-            font-weight: 800;
-            color: var(--secondary);
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 20px;
-        }
-        .sidebar .brand span { color: var(--primary); }
-        .sidebar .brand i { color: var(--primary); margin-right: 8px; }
-
-        .nav-link {
-            color: var(--text-light);
-            padding: 12px 24px;
-            font-weight: 500;
-            margin: 4px 16px;
-            border-radius: var(--radius-md);
-            transition: all 0.2s ease;
-        }
-
-        .nav-link i { margin-right: 10px; width: 20px; text-align: center; }
-        .nav-link:hover { color: var(--primary); background: #f1f5f9; }
-        .nav-link.active { color: var(--primary); background: #eff6ff; font-weight: 600; }
-
-        .main-content {
-            margin-left: 260px;
-            padding: 40px;
-        }
-
-        .page-header { margin-bottom: 30px; }
-        .page-title { font-weight: 700; color: var(--secondary); font-size: 24px; }
-
         .form-card {
-            background: var(--surface);
-            border-radius: var(--radius-lg);
             padding: 30px;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border);
             max-width: 800px;
         }
 
@@ -153,37 +87,26 @@ if(isset($_POST['post']))
 <body>
 
 <div class="sidebar">
-    <div class="brand">
-        <i class="fa-solid fa-graduation-cap"></i> Excellence <span>Portal</span>
+    <div class="sidebar-brand">
+        <h2>Excellence <span>Portal</span></h2>
+        <p>Hiring Partner Panel</p>
     </div>
-    <ul class="nav flex-column">
-        <li class="nav-item">
-            <a class="nav-link" href="../recruiter_dashboard.php">
-                <i class="fa-solid fa-chart-pie"></i> Dashboard
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" href="post_job.php">
-                <i class="fa-solid fa-briefcase"></i> Post Job
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="view_applications.php">
-                <i class="fa-solid fa-users"></i> Applications
-            </a>
-        </li>
-        <li class="nav-item mt-4">
-            <a class="nav-link text-danger" href="../logout.php">
-                <i class="fa-solid fa-sign-out-alt"></i> Logout
-            </a>
-        </li>
-    </ul>
+    <div class="sidebar-nav">
+        <a href="../recruiter_dashboard.php"><i class="fa-solid fa-house"></i> <span>Dashboard</span></a>
+        <a href="post_job.php" class="active"><i class="fa-solid fa-file-circle-plus"></i> <span>Post Opportunity</span></a>
+        <a href="my_jobs.php"><i class="fa-solid fa-list-check"></i> <span>Manage Postings</span></a>
+        <a href="view_applications.php"><i class="fa-solid fa-users-viewfinder"></i> <span>Review Applicants</span></a>
+        <a href="send_message.php"><i class="fa-solid fa-envelope-open-text"></i> <span>Send Notifications</span></a>
+    </div>
+    <div class="sidebar-footer">
+        <a href="../auth/logout.php"><i class="fa-solid fa-power-off"></i> <span>Sign Out</span></a>
+    </div>
 </div>
 
 <div class="main-content">
     <div class="page-header animate-up">
-        <h2 class="page-title fw-800">Create Job Posting</h2>
-        <p class="text-muted">Fill out the details below to attract top talent.</p>
+        <h2 class="page-title">Create Job Posting</h2>
+        <p class="page-subtitle">Fill out the details below to attract top talent.</p>
     </div>
 
     <?php 
@@ -191,7 +114,7 @@ if(isset($_POST['post']))
     if(isset($error)) echo "<div class='alert alert-danger'><i class='fa-solid fa-circle-exclamation me-2'></i> ".e($error)."</div>"; 
     ?>
 
-    <div class="form-card glass-card animate-up" style="animation-delay: 0.1s;">
+    <div class="form-card surface-card glass-card animate-up" style="animation-delay: 0.1s;">
         <form method="POST">
             <?php csrf_field(); ?>
             <div class="row g-4">

@@ -38,18 +38,17 @@ while($row = mysqli_fetch_assoc($salary_query)){
 }
 ?>
 
-<div class="container mt-4 mb-5">
-    <div class="row mb-4">
-        <div class="col-12">
-            <h2 class="fw-800 text-secondary mb-1">Placement Analytics</h2>
-            <p class="text-muted">Visual insights into recruitment cycles and student performance.</p>
-        </div>
+<div class="dashboard-header">
+    <div class="dashboard-title">
+        <h2>Placement Analytics</h2>
+        <p>Visual insights into recruitment cycles and student performance.</p>
     </div>
+</div>
 
-    <div class="row g-4">
+<div class="row g-4">
         <!-- Application Status Chart -->
         <div class="col-md-6">
-            <div class="card border-0 shadow-sm p-4 h-100" style="border-radius: 20px;">
+            <div class="dashboard-card h-100">
                 <h6 class="fw-bold mb-4">Application Lifecycle Distribution</h6>
                 <canvas id="statusChart"></canvas>
             </div>
@@ -57,7 +56,7 @@ while($row = mysqli_fetch_assoc($salary_query)){
 
         <!-- Dept Wise Placement Chart -->
         <div class="col-md-6">
-            <div class="card border-0 shadow-sm p-4 h-100" style="border-radius: 20px;">
+            <div class="dashboard-card h-100">
                 <h6 class="fw-bold mb-4">Department-wise Selections</h6>
                 <canvas id="deptChart"></canvas>
             </div>
@@ -65,14 +64,13 @@ while($row = mysqli_fetch_assoc($salary_query)){
 
         <!-- Salary Trends -->
         <div class="col-12">
-            <div class="card border-0 shadow-sm p-4" style="border-radius: 20px;">
+            <div class="dashboard-card">
                 <h6 class="fw-bold mb-4">Average Salary Package by Department (LPA)</h6>
                 <div style="height: 300px;">
                     <canvas id="salaryChart"></canvas>
                 </div>
             </div>
         </div>
-    </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

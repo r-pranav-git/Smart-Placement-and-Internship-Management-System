@@ -30,6 +30,7 @@ $latest_students = mysqli_query($conn, "SELECT name, email, created_at FROM user
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/premium.css">
+<link rel="stylesheet" href="admin/admin_ui.css">
 
 
 
@@ -44,24 +45,24 @@ $latest_students = mysqli_query($conn, "SELECT name, email, created_at FROM user
 <span class="navbar-toggler-icon"></span>
 </button>
 <div class="collapse navbar-collapse" id="navbarNav">
-<ul class="navbar-nav ms-auto">
+<ul class="navbar-nav ms-auto gap-2">
 <li class="nav-item">
-<a class="nav-link" href="admin_dashboard.php"><i class="fa-solid fa-chart-pie"></i> Overview</a>
+<a class="nav-link active" href="admin_dashboard.php"><i class="fa-solid fa-chart-pie me-1"></i> Overview</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="admin/manage_users.php"><i class="fa-solid fa-users"></i> Students</a>
+<a class="nav-link" href="admin/manage_users.php"><i class="fa-solid fa-users me-1"></i> Students</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="admin/manage_recruiters.php"><i class="fa-solid fa-building"></i> Recruiters</a>
+<a class="nav-link" href="admin/manage_recruiters.php"><i class="fa-solid fa-building me-1"></i> Recruiters</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="admin/view_jobs.php"><i class="fa-solid fa-briefcase"></i> Drives</a>
+<a class="nav-link" href="admin/view_jobs.php"><i class="fa-solid fa-briefcase me-1"></i> Drives</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="admin/reports.php"><i class="fa-solid fa-chart-line"></i> Reports</a>
+<a class="nav-link" href="admin/reports.php"><i class="fa-solid fa-chart-line me-1"></i> Reports</a>
 </li>
 <li class="nav-item">
-<a class="nav-link text-danger" href="auth/logout.php"><i class="fa-solid fa-power-off"></i> Logout</a>
+<a class="btn btn-outline-danger btn-sm rounded-pill px-4" href="auth/logout.php"><i class="fa-solid fa-power-off me-1"></i> Logout</a>
 </li>
 </ul>
 </div>
@@ -69,7 +70,7 @@ $latest_students = mysqli_query($conn, "SELECT name, email, created_at FROM user
 </nav>
 
 
-<div class="container">
+<div class="container admin-shell">
 
 <div class="dashboard-header">
     <div class="dashboard-title">

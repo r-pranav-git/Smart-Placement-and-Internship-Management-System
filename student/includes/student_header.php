@@ -19,12 +19,11 @@ if(!isset($_SESSION['user_id'])){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/premium.css">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-    </style>
+    <link rel="stylesheet" href="student_ui.css">
 </head>
 <body>
 
+<?php $student_active = basename($_SERVER['PHP_SELF']); ?>
 <nav class="navbar navbar-expand-lg sticky-top navbar-premium">
     <div class="container">
         <a class="navbar-brand fw-800" href="../student_dashboard.php">
@@ -35,10 +34,10 @@ if(!isset($_SESSION['user_id'])){
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto gap-2">
-                <li class="nav-item"><a class="nav-link" href="../student_dashboard.php">Dashboard</a></li>
-                <li class="nav-item"><a class="nav-link" href="edit_profile.php">Profile</a></li>
-                <li class="nav-item"><a class="nav-link" href="my_applications.php">Applications</a></li>
-                <li class="nav-item"><a class="nav-link" href="interview_schedule.php">Interviews</a></li>
+                <li class="nav-item"><a class="nav-link <?php echo $student_active === 'student_dashboard.php' ? 'active' : ''; ?>" href="../student_dashboard.php">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link <?php echo $student_active === 'edit_profile.php' ? 'active' : ''; ?>" href="edit_profile.php">Profile</a></li>
+                <li class="nav-item"><a class="nav-link <?php echo $student_active === 'my_applications.php' ? 'active' : ''; ?>" href="my_applications.php">Applications</a></li>
+                <li class="nav-item"><a class="nav-link <?php echo $student_active === 'interview_schedule.php' ? 'active' : ''; ?>" href="interview_schedule.php">Interviews</a></li>
                 <li class="nav-item ms-lg-3">
                     <a class="btn btn-outline-danger btn-sm rounded-pill px-4" href="../auth/logout.php">
                         <i class="fa-solid fa-power-off me-1"></i> Logout
@@ -49,4 +48,4 @@ if(!isset($_SESSION['user_id'])){
     </div>
 </nav>
 
-<div class="container mt-4">
+<div class="container student-shell">

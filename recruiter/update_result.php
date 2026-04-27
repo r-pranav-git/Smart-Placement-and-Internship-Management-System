@@ -103,38 +103,62 @@ if(!$app) die("Application not found.");
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/premium.css">
+    <link rel="stylesheet" href="recruiter_ui.css">
     <style>
-        body { background: var(--background); font-family: 'Inter', sans-serif; height: 100vh; display: flex; align-items: center; justify-content: center; }
-        .update-card { max-width: 450px; width: 100%; padding: 40px; }
+        .update-card { max-width: 520px; width: 100%; padding: 40px; }
     </style>
 </head>
 <body>
 
-<div class="update-card glass-card animate-up">
-    <div class="text-center mb-4">
-        <div class="action-icon bg-blue-100 text-primary mx-auto mb-3" style="width: 60px; height: 60px; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
-            <i class="fa-solid fa-user-check"></i>
-        </div>
-        <h4 class="fw-800 mb-1">Update Application</h4>
-        <p class="text-muted small"><?php echo e($app['name']); ?> • <?php echo e($app['title']); ?></p>
+<div class="sidebar">
+    <div class="sidebar-brand">
+        <h2>Excellence <span>Portal</span></h2>
+        <p>Hiring Partner Panel</p>
+    </div>
+    <div class="sidebar-nav">
+        <a href="../recruiter_dashboard.php"><i class="fa-solid fa-house"></i> <span>Dashboard</span></a>
+        <a href="post_job.php"><i class="fa-solid fa-file-circle-plus"></i> <span>Post Opportunity</span></a>
+        <a href="my_jobs.php"><i class="fa-solid fa-list-check"></i> <span>Manage Postings</span></a>
+        <a href="view_applications.php" class="active"><i class="fa-solid fa-users-viewfinder"></i> <span>Review Applicants</span></a>
+        <a href="send_message.php"><i class="fa-solid fa-envelope-open-text"></i> <span>Send Notifications</span></a>
+    </div>
+    <div class="sidebar-footer">
+        <a href="../auth/logout.php"><i class="fa-solid fa-power-off"></i> <span>Sign Out</span></a>
+    </div>
+</div>
+
+<div class="main-content">
+    <div class="page-header animate-up">
+        <h2 class="page-title">Update Application Result</h2>
+        <p class="page-subtitle"><?php echo e($app['name']); ?> for <?php echo e($app['title']); ?></p>
     </div>
 
-    <?php if(isset($success)) echo "<div class='alert alert-success small animate-up'>$success</div>"; ?>
-
-    <form method="POST">
-        <?php csrf_field(); ?>
-        <div class="mb-4">
-            <label class="form-label fw-600 small">Select New Status</label>
-            <select name="status" class="form-select form-select-lg" style="border-radius: 12px; font-size: 15px;">
-                <option value="selected" <?php if($app['status'] == 'selected') echo 'selected'; ?>>✅ Selected</option>
-                <option value="rejected" <?php if($app['status'] == 'rejected') echo 'selected'; ?>>❌ Rejected</option>
-                <option value="shortlisted" <?php if($app['status'] == 'shortlisted') echo 'selected'; ?>>⏳ Shortlisted</option>
-            </select>
+    <div class="update-card surface-card glass-card animate-up">
+        <div class="text-center mb-4">
+            <div class="action-icon bg-blue-100 text-primary mx-auto mb-3" style="width: 60px; height: 60px; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                <i class="fa-solid fa-user-check"></i>
+            </div>
+            <h4 class="fw-800 mb-1">Update Application</h4>
+            <p class="text-muted small"><?php echo e($app['name']); ?> • <?php echo e($app['title']); ?></p>
         </div>
-        
-        <button type="submit" name="update" class="btn-premium w-100 mb-3">Save Changes</button>
-        <a href="view_applications.php" class="btn btn-light border w-100" style="border-radius: 12px; padding: 12px;">Cancel</a>
-    </form>
+
+        <?php if(isset($success)) echo "<div class='alert alert-success small animate-up'>$success</div>"; ?>
+
+        <form method="POST">
+            <?php csrf_field(); ?>
+            <div class="mb-4">
+                <label class="form-label fw-600 small">Select New Status</label>
+                <select name="status" class="form-select form-select-lg" style="border-radius: 12px; font-size: 15px;">
+                    <option value="selected" <?php if($app['status'] == 'selected') echo 'selected'; ?>>Selected</option>
+                    <option value="rejected" <?php if($app['status'] == 'rejected') echo 'selected'; ?>>Rejected</option>
+                    <option value="shortlisted" <?php if($app['status'] == 'shortlisted') echo 'selected'; ?>>Shortlisted</option>
+                </select>
+            </div>
+
+            <button type="submit" name="update" class="btn-premium w-100 mb-3">Save Changes</button>
+            <a href="view_applications.php" class="btn btn-light border w-100" style="border-radius: 12px; padding: 12px;">Cancel</a>
+        </form>
+    </div>
 </div>
 
 </body>
