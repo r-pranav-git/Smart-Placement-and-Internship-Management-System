@@ -23,8 +23,8 @@ if(isset($_POST['post']))
     $salary = (float) $_POST['salary_package'];
     $location = trim($_POST['location']);
 
-    $stmt = mysqli_prepare($conn, "INSERT INTO jobs (recruiter_id, title, description, type, department, min_cgpa, max_backlogs, deadline, salary_package, location) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    mysqli_stmt_bind_param($stmt, "isssssisds", $recruiter_id, $title, $description, $type, $department, $cgpa, $backlogs, $deadline, $salary, $location);
+    $stmt = mysqli_prepare($conn, "INSERT INTO jobs (recruiter_id, title, description, type, department, min_cgpa, max_backlogs, deadline, salary, location) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    mysqli_stmt_bind_param($stmt, "issssdisds", $recruiter_id, $title, $description, $type, $department, $cgpa, $backlogs, $deadline, $salary, $location);
 
     if(mysqli_stmt_execute($stmt)){
         $success = "Job posted successfully!";

@@ -8,7 +8,7 @@ require_role('recruiter');
 if(isset($_POST['send']))
 {
     verify_csrf_token($_POST['csrf_token']);
-    $student = (int)$_POST['student'];
+    $student = (int)$_POST['student_id'];
     $message = trim($_POST['message']);
 
     $stmt = mysqli_prepare($conn, "INSERT INTO notifications (user_id, message) VALUES (?, ?)");
@@ -20,6 +20,9 @@ if(isset($_POST['send']))
         $error = "Failed to send message.";
     }
 }
+
+// Fetch students for dropdown
+$students_query = mysqli_query($conn, "SELECT id, name FROM users WHERE role='student' ORDER BY name ASC");
 ?>
 
 <!DOCTYPE html>
@@ -70,8 +73,15 @@ if(isset($_POST['send']))
         <form method="POST">
             <?php csrf_field(); ?>
             <div class="mb-3">
-                <label class="form-label fw-600">Student ID</label>
-                <input type="number" name="student" class="form-control" placeholder="Enter student database ID" required>
+                <label class="form-label fw-600">Choose Student</label>
+                <select name="student_id" class="form-select" required>
+                    <option value="">-- Select Student --</option>
+                    <?php while ($row = mysqli_fetch_assoc($students_query)) { ?>
+                        <option value="<?php echo $row['id']; ?>">
+                            <?php echo htmlspecialchars($row['name']); ?>
+                        </option>
+                    <?php } ?>
+                </select>
             </div>
             <div class="mb-4">
                 <label class="form-label fw-600">Your Message</label>

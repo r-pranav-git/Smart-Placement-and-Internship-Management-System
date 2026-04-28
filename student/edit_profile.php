@@ -43,14 +43,14 @@ if(isset($_POST['update'])) {
             SET roll_no = ?, department = ?, semester = ?, cgpa = ?, backlogs = ?, skills = ?, linkedin = ?, github = ?, portfolio_url = ?
             WHERE user_id = ?
         ");
-        mysqli_stmt_bind_param($stmt_update, "ssidississ", $roll, $dept, $sem, $cgpa, $backlogs, $skills, $linkedin, $github, $portfolio, $user_id);
+        mysqli_stmt_bind_param($stmt_update, "ssidissssi", $roll, $dept, $sem, $cgpa, $backlogs, $skills, $linkedin, $github, $portfolio, $user_id);
         mysqli_stmt_execute($stmt_update);
     } else {
         $stmt_insert = mysqli_prepare($conn, "
             INSERT INTO students (user_id, roll_no, department, semester, cgpa, backlogs, skills, linkedin, github, portfolio_url)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ");
-        mysqli_stmt_bind_param($stmt_insert, "issidississ", $user_id, $roll, $dept, $sem, $cgpa, $backlogs, $skills, $linkedin, $github, $portfolio);
+        mysqli_stmt_bind_param($stmt_insert, "issidissss", $user_id, $roll, $dept, $sem, $cgpa, $backlogs, $skills, $linkedin, $github, $portfolio);
         mysqli_stmt_execute($stmt_insert);
     }
 

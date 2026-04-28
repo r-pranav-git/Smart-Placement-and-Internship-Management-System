@@ -8,11 +8,12 @@ require_role('student');
 $user = $_SESSION['user_id'];
 
 $stmt = mysqli_prepare($conn, "
-    SELECT jobs.title, interviews.date, interviews.location
-    FROM interviews
-    JOIN jobs ON interviews.job_id = jobs.id
-    WHERE interviews.student_id = ?
-    ORDER BY interviews.date ASC
+    SELECT i.*, j.title, r.company_name AS company
+    FROM interviews i
+    JOIN jobs j ON i.job_id = j.id
+    JOIN recruiters r ON j.recruiter_id = r.user_id
+    WHERE i.student_id = ?
+    ORDER BY i.date ASC
 ");
 mysqli_stmt_bind_param($stmt, "i", $user);
 mysqli_stmt_execute($stmt);
@@ -40,7 +41,10 @@ $result = mysqli_stmt_get_result($stmt);
                 <?php if(mysqli_num_rows($result) > 0): ?>
                     <?php while($row = mysqli_fetch_assoc($result)): ?>
                         <tr>
-                            <td class="fw-bold"><?php echo e($row['title']); ?></td>
+                            <td>
+                                <div class="fw-bold text-dark"><?php echo htmlspecialchars($row['company']); ?></div>
+                                <div class="text-muted small"><?php echo htmlspecialchars($row['title']); ?></div>
+                            </td>
                             <td>
                                 <div class="d-flex align-items-center gap-2">
                                     <div class="action-icon bg-blue-100 text-primary small" style="width: 32px; height: 32px; font-size: 12px;"><i class="fa-regular fa-calendar"></i></div>

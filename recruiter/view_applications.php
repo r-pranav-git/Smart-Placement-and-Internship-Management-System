@@ -60,6 +60,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['app_id'], $_POST['sta
 $sql = "
 SELECT 
     applications.id as app_id,
+    applications.student_id,
+    applications.job_id,
     applications.status,
     users.name,
     users.email,
@@ -253,6 +255,11 @@ if (!$result) {
                                 </select>
                                 <button type="submit" class="btn-update">Update</button>
                             </form>
+                            <div class="mt-2">
+                                <a href="schedule_interview.php?student_id=<?php echo $row['student_id']; ?>&job_id=<?php echo $row['job_id']; ?>" class="btn btn-outline-success btn-sm w-100" style="border-radius: 6px; font-weight: 600; padding: 4px 10px; border-color: #10b981; color: #059669;">
+                                    <i class="fa-solid fa-calendar-plus me-1"></i> Schedule
+                                </a>
+                            </div>
                         </td>
                     </tr>
                 <?php

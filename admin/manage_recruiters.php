@@ -26,7 +26,8 @@ $result = mysqli_query($conn, $sql);
             <tr>
                 <th>Name</th>
                 <th>Email</th>
-                <th style="width:120px;">Action</th>
+                <th>Status</th>
+                <th style="width:200px;">Action</th>
             </tr>
         </thead>
 
@@ -35,10 +36,26 @@ $result = mysqli_query($conn, $sql);
             <tr>
                 <td><?php echo e($row['name']); ?></td>
                 <td><?php echo e($row['email']); ?></td>
+
                 <td>
+                    <?php if ($row['status'] == 'approved'): ?>
+                        <span class="badge bg-success">Approved</span>
+                    <?php else: ?>
+                        <span class="badge bg-warning text-dark">Pending</span>
+                    <?php endif; ?>
+                </td>
+
+                <td>
+                    <?php if ($row['status'] != 'approved'): ?>
+                        <a class="btn btn-success btn-sm"
+                           href="approve_recruiter.php?id=<?php echo $row['id']; ?>">
+                           Approve
+                        </a>
+                    <?php endif; ?>
+
                     <a class="btn btn-danger btn-sm"
                        href="delete_user.php?id=<?php echo $row['id']; ?>"
-                       onclick="return confirm('Are you sure you want to delete this recruiter?')">
+                       onclick="return confirm('Delete this recruiter?')">
                        Delete
                     </a>
                 </td>
