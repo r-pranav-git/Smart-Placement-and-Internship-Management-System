@@ -206,8 +206,17 @@ $profile_readiness = round(($complete_fields / $total_fields) * 100);
                     <div class="dashboard-card glass-card h-100" style="padding: 24px; display: block; border-left: 4px solid var(--p-color);">
                         <h6 class="fw-bold mb-3 small"><i class="fa-solid fa-book-open text-primary me-2"></i> Resources</h6>
                         <ul class="list-unstyled mb-0" style="font-size: 13px;">
-                            <li class="mb-2"><a href="#" class="text-decoration-none"><i class="fa-solid fa-file-lines me-2"></i> Resume Templates</a></li>
-                            <li><a href="#" class="text-decoration-none"><i class="fa-solid fa-circle-play me-2"></i> Interview Prep Docs</a></li>
+<li class="mb-2">
+  <a href="https://www.canva.com/resumes/templates/" target="_blank" class="text-decoration-none">
+    <i class="fa-solid fa-file-lines me-2"></i> Resume Templates
+  </a>
+</li>
+
+<li>
+  <a href="https://www.indeed.com/career-advice/interviewing" target="_blank" class="text-decoration-none">
+    <i class="fa-solid fa-circle-play me-2"></i> Interview Prep Docs
+  </a>
+</li>                            
                         </ul>
                     </div>
                 </div>

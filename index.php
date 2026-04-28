@@ -35,11 +35,11 @@
             The official portal for Excellence College bridging the gap between academia and industry. Register to explore elite opportunities, personalized career guidance, and seamless recruitment processes.
         </p>
         <div class="hero-buttons animate-up">
-            <a href="auth/register.php" class="btn-premium text-decoration-none">
-                Student Registration
-            </a>
+<a href="auth/register.php" class="btn-premium text-decoration-none" style="text-decoration: none;">
+    Register Account
+</a>
             <a href="auth/login.php" class="btn-large btn-secondary" style="border-radius: 12px; font-weight: 600;">
-                Recruiter Login
+                Login
             </a>
         </div>
     </div>

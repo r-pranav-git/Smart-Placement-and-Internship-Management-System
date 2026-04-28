@@ -7,10 +7,25 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     verify_csrf_token($_POST['csrf_token']);
 
-    $name = trim($_POST['name']);
-    $email = trim($_POST['email']);
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $roll_no = trim($_POST['roll_no']);
+$name = trim($_POST['name']);
+$email = trim($_POST['email']);
+$raw_password = $_POST['password'];
+
+// PASSWORD VALIDATION
+if (strlen($raw_password) < 8) {
+    $error = "Password must be at least 8 characters long.";
+} elseif (!preg_match("/[A-Z]/", $raw_password)) {
+    $error = "Password must contain at least one uppercase letter.";
+} elseif (!preg_match("/[a-z]/", $raw_password)) {
+    $error = "Password must contain at least one lowercase letter.";
+} elseif (!preg_match("/[0-9]/", $raw_password)) {
+    $error = "Password must contain at least one number.";
+} elseif (!preg_match("/[\W]/", $raw_password)) {
+    $error = "Password must contain at least one special character.";
+} else {
+    $password = password_hash($raw_password, PASSWORD_DEFAULT);
+}   
+     $roll_no = trim($_POST['roll_no']);
     $department = trim($_POST['department']);
     $semester = (int) $_POST['semester'];
 
