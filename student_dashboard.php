@@ -206,17 +206,16 @@ $profile_readiness = round(($complete_fields / $total_fields) * 100);
                     <div class="dashboard-card glass-card h-100" style="padding: 24px; display: block; border-left: 4px solid var(--p-color);">
                         <h6 class="fw-bold mb-3 small"><i class="fa-solid fa-book-open text-primary me-2"></i> Resources</h6>
                         <ul class="list-unstyled mb-0" style="font-size: 13px;">
-<li class="mb-2">
+                            <li class="mb-2">
   <a href="https://www.canva.com/resumes/templates/" target="_blank" class="text-decoration-none">
     <i class="fa-solid fa-file-lines me-2"></i> Resume Templates
   </a>
 </li>
-
-<li>
+                            <li>
   <a href="https://www.indeed.com/career-advice/interviewing" target="_blank" class="text-decoration-none">
     <i class="fa-solid fa-circle-play me-2"></i> Interview Prep Docs
   </a>
-</li>                            
+</li>
                         </ul>
                     </div>
                 </div>
@@ -359,7 +358,285 @@ $profile_readiness = round(($complete_fields / $total_fields) * 100);
 
 
 </div>
+<!-- AI ASSISTANT -->
 
+<button id="aiButton" onclick="toggleChat()">
+    🤖
+</button>
+
+<div id="chatBox">
+
+    <div id="chatHeader">
+        AI Placement Assistant
+    </div>
+
+    <div id="chatMessages"></div>
+
+    <div id="chatInputArea">
+
+        <input
+            type="text"
+            id="message"
+            placeholder="Ask something..."
+        >
+
+        <button onclick="sendMessage()">
+            Send
+        </button>
+
+        <button onclick="startVoice()">
+            🎤
+        </button>
+
+    </div>
+
+</div>
+
+<style>
+
+#aiButton {
+
+    position: fixed;
+
+    bottom: 20px;
+    right: 20px;
+
+    width: 65px;
+    height: 65px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #0d6efd;
+    color: white;
+
+    font-size: 30px;
+
+    cursor: pointer;
+
+    z-index: 9999;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+#chatBox {
+
+    display: none;
+
+    position: fixed;
+
+    bottom: 95px;
+    right: 20px;
+
+    width: 360px;
+    height: 500px;
+
+    background: white;
+
+    border-radius: 12px;
+
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+
+    overflow: hidden;
+
+    z-index: 9999;
+}
+
+#chatHeader {
+
+    background: #0d6efd;
+    color: white;
+
+    padding: 15px;
+
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#chatMessages {
+
+    height: 360px;
+
+    overflow-y: auto;
+
+    padding: 15px;
+
+    font-size: 14px;
+}
+
+#chatInputArea {
+
+    display: flex;
+
+    gap: 5px;
+
+    padding: 10px;
+
+    border-top: 1px solid #ddd;
+}
+
+#chatInputArea input {
+
+    flex: 1;
+
+    padding: 8px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 6px;
+}
+
+#chatInputArea button {
+
+    border: none;
+
+    padding: 8px 12px;
+
+    border-radius: 6px;
+
+    background: #0d6efd;
+
+    color: white;
+}
+
+</style>
+<script>
+
+let recognition;
+
+// OPEN / CLOSE CHAT
+
+function toggleChat() {
+
+    const chatBox =
+        document.getElementById("chatBox");
+
+    if (
+        chatBox.style.display === "none" ||
+        chatBox.style.display === ""
+    ) {
+
+        chatBox.style.display = "block";
+
+    } else {
+
+        chatBox.style.display = "none";
+    }
+}
+
+// SEND MESSAGE TO AI
+
+async function sendMessage() {
+
+    const input =
+        document.getElementById("message");
+
+    const message = input.value;
+
+    if(message.trim() === "") return;
+
+    const chatMessages =
+        document.getElementById("chatMessages");
+
+    // USER MESSAGE
+
+    chatMessages.innerHTML += `
+        <div style="margin-bottom:10px;">
+            <b>You:</b><br>
+            ${message}
+        </div>
+    `;
+
+    input.value = "";
+
+    // SEND TO PHP API
+
+    const response = await fetch(
+        "voice_api.php",
+        {
+            method: "POST",
+
+            headers: {
+                "Content-Type":
+                "application/x-www-form-urlencoded"
+            },
+
+            body:
+                "message=" +
+                encodeURIComponent(message)
+        }
+    );
+
+    const data = await response.json();
+
+    // AI MESSAGE
+
+    chatMessages.innerHTML += `
+        <div style="
+            margin-bottom:15px;
+            background:#f1f1f1;
+            padding:10px;
+            border-radius:8px;
+        ">
+            <b>AI:</b><br>
+            ${data.reply}
+        </div>
+    `;
+
+    // AUTO SCROLL
+
+    chatMessages.scrollTop =
+        chatMessages.scrollHeight;
+
+    // SPEAK RESPONSE
+
+    const speech =
+        new SpeechSynthesisUtterance(
+            data.reply
+        );
+
+    speechSynthesis.speak(speech);
+}
+
+// START MICROPHONE
+
+function startVoice() {
+
+    recognition =
+        new webkitSpeechRecognition();
+
+    recognition.lang = "en-US";
+
+    recognition.continuous = false;
+
+    recognition.interimResults = false;
+
+    recognition.start();
+
+    recognition.onresult =
+        function(event) {
+
+        const transcript =
+            event.results[0][0].transcript;
+
+        document.getElementById("message")
+            .value = transcript;
+
+        sendMessage();
+    };
+}
+
+// STOP MICROPHONE
+
+function stopVoice() {
+
+    if (recognition) {
+
+        recognition.stop();
+    }
+}
+
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
